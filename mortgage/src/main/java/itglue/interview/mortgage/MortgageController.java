@@ -41,7 +41,7 @@ public class MortgageController {
         }
 
         mortgageResponse.setSuccessful(true);
-        mortgageResponse.setPaymentAmount(String.format("%.2f", mortgageService.getPaymentAmount(mortgageRequest)));
+        mortgageResponse.getResults().setPaymentAmount(String.format("%.2f", mortgageService.getPaymentAmount(mortgageRequest)));
         return mortgageResponse;
     }
 
@@ -66,7 +66,7 @@ public class MortgageController {
             return  mortgageResponse;
         }
         mortgageResponse.setSuccessful(true);
-        mortgageResponse.setMortgageAmount(String.format("%.2f", mortgageService.getMaxMortgage(mortgageRequest)));
+        mortgageResponse.getResults().setMortgageAmount(String.format("%.2f", mortgageService.getMaxMortgage(mortgageRequest)));
         return mortgageResponse;
     }
 
@@ -79,9 +79,9 @@ public class MortgageController {
             return mortgageResponse;
         }
 
-        mortgageResponse.setOldInterestRate(mortgageService.setInterestRate(Float.valueOf(mortgageConfig.getEffectiveInterestRate())));
+        mortgageResponse.getResults().setOldInterestRate(mortgageService.setInterestRate(Float.valueOf(mortgageConfig.getEffectiveInterestRate())));
         mortgageResponse.setSuccessful(true);
-        mortgageResponse.setNewInterestRate(mortgageService.getInterestRate());
+        mortgageResponse.getResults().setNewInterestRate(mortgageService.getInterestRate());
         return  mortgageResponse;
     }
 

@@ -10,7 +10,7 @@ Amortization Period**
 Return:
 Payment amount per scheduled payment
 Sample response message:
-{"successful":true,"reason":null,"paymentAmount":null,"mortgageAmount":"916916.63","oldInterestRate":null,"newInterestRate":null}
+{"successful":true,"reason":null,"results":{"paymentAmount":null,"mortgageAmount":"916916.63","oldInterestRate":null,"newInterestRate":null}}
 
 
 GET /mortgage-amount
@@ -22,7 +22,7 @@ Payment schedule***
 Amortization Period**
 Return:
 Maximum Mortgage that can be taken out. Sample response message:
-{"successful":true,"reason":null,"paymentAmount":null,"mortgageAmount":"694793.31","oldInterestRate":null,"newInterestRate":null}
+{"successful":true,"reason":null,"results":{"paymentAmount":null,"mortgageAmount":"694793.31","oldInterestRate":null,"newInterestRate":null}}
 
 PATCH /interest-rate
 Change the interest rate used by the application
@@ -31,4 +31,4 @@ Interest Rate
 Return:
 message indicating the old and new interest rate
 Sample response message:
-{"successful":true,"reason":null,"paymentAmount":null,"mortgageAmount":null,"oldInterestRate":"0.0250","newInterestRate":"0.0900"}
+{"successful":true,"reason":null,"results":{"paymentAmount":null,"mortgageAmount":null,"oldInterestRate":"0.0250","newInterestRate":"0.0900"}}

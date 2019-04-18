@@ -6,11 +6,7 @@ import org.springframework.stereotype.Component;
 public class MortgageResponse {
     private boolean successful;
     private String reason;
-    private String paymentAmount;
-    private String mortgageAmount;
-    private String oldInterestRate;
-    private String newInterestRate;
-
+    private Results results = new Results();
     public boolean isSuccessful() {
         return successful;
     }
@@ -26,6 +22,23 @@ public class MortgageResponse {
     public void setReason(String reason) {
         this.reason = reason;
     }
+
+    public Results getResults() {
+        return results;
+    }
+
+    public void setResults(Results results) {
+        this.results = results;
+    }
+}
+
+class Results{
+    private String paymentAmount;
+    private String mortgageAmount;
+    private String oldInterestRate;
+    private String newInterestRate;
+
+
 
     public String getPaymentAmount() {
         return paymentAmount;

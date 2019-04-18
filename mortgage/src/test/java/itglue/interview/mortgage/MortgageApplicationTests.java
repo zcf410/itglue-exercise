@@ -45,7 +45,7 @@ public class MortgageApplicationTests {
 				.param("amortizationInYears","20")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("paymentAmount").value("5480.31"));
+				.andExpect(jsonPath("results.paymentAmount").value("5480.31"));
 		}
 
 	//negative test when down payment is less than minium
@@ -73,7 +73,7 @@ public class MortgageApplicationTests {
 				.param("amortizationInYears","20")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("mortgageAmount").value("916916.63"));
+				.andExpect(jsonPath("results.mortgageAmount").value("916916.63"));
 	}
 
 	@Test
@@ -83,13 +83,30 @@ public class MortgageApplicationTests {
 				.content("{\"effectiveInterestRate\":0.03}")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("newInterestRate").value("0.0300"))
-				.andExpect(jsonPath("oldInterestRate").value("0.0250"));
+				.andExpect(jsonPath("results.newInterestRate").value("0.0300"))
+				.andExpect(jsonPath("results.oldInterestRate").value("0.0250"));
+
+		mvc.perform(get("/payment-amount")
+				.param("askingPrice","1000000")
+				.param("downPayment","200000")
+				.param("schedule", "MONTHLY")
+				.param("amortizationInYears","20")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("results.paymentAmount").value("5742.47"));
 		mvc.perform(patch("/interest-rate")
 				.content("{\"effectiveInterestRate\":0.025}")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("newInterestRate").value("0.0250"))
-				.andExpect(jsonPath("oldInterestRate").value("0.0300"));
+				.andExpect(jsonPath("results.newInterestRate").value("0.0250"))
+				.andExpect(jsonPath("results.oldInterestRate").value("0.0300"));
+		mvc.perform(get("/payment-amount")
+				.param("askingPrice","1000000")
+				.param("downPayment","200000")
+				.param("schedule", "MONTHLY")
+				.param("amortizationInYears","20")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("results.paymentAmount").value("5480.31"));
 	}
 }
