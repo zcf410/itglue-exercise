@@ -38,18 +38,6 @@ public class MortgageApplicationTests {
 	@Test
 	public void testGetPaymentAmount() throws Exception,RequestInvalidException{
 
-		MortgageRequest mortgageRequest = null;
-		float paymentAmount = 10000, downPayment = 20000;
-		String schedule= "MONTHLY";
-		int amortizationInYears = 20;
-
-		mortgageRequest = new MortgageRequest.MortgageRequestBuilder()
-					.withPaymentAmount(paymentAmount)
-					.withDownPayment(downPayment)
-					.withSchedule(schedule)
-					.withAmortizationInYears(amortizationInYears)
-					.build();
-
 		mvc.perform(get("/payment-amount")
 				.param("askingPrice","1000000")
 				.param("downPayment","200000")
@@ -77,7 +65,6 @@ public class MortgageApplicationTests {
 
 	@Test
 	public void testGetMortgageAmount() throws Exception,RequestInvalidException{
-
 
 		mvc.perform(get("/mortgage-amount")
 				.param("paymentAmount","2500")
